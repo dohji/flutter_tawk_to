@@ -185,9 +185,14 @@ TawkVisitor(
 
 Below are example screenshots of the `tawk_to` package in action:
 
-| Home Screen                          | Chat Screen                          | Notification                         |
-|--------------------------------------|--------------------------------------|--------------------------------------|
-| ![Home Screen](screenshots/home.png) | ![Chat Screen](screenshots/help.png) | ![Notification](screenshots/gif.gif) |
+| Home Screen                          | Chat Screen                          |
+|--------------------------------------|--------------------------------------|
+| ![Home Screen](screenshots/home.png) | ![Chat Screen](screenshots/help.png) |
+
+| Notification                          |
+|---------------------------------------|
+| ![Notification](screenshots/gif.gif)  |
+
 
 <table>
   <tr>
@@ -206,11 +211,6 @@ Below are example screenshots of the `tawk_to` package in action:
   <img src="screenshots/home.png" width="30%">
   <img src="screenshots/help.png" width="30%">
   <img src="screenshots/gif.gif" width="35%">
-</p>
-<p align="center">
-  <strong>Home Screen</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <strong>Chat Screen</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <strong>Notification Demo</strong>
 </p>
 
 ## Example
