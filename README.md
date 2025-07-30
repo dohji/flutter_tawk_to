@@ -1,4 +1,4 @@
-# flutter_tawk_to
+# flutter_tawk_to_plus
 
 A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat functionality into your Flutter applications. This package provides a seamless way to embed a Tawk.to chat widget, manage visitor attributes, handle agent messages, and display notifications using a WebView-based interface.
 
@@ -24,7 +24,7 @@ A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat func
 1. Add the package to your `pubspec.yaml`:
    ```yaml
    dependencies:
-     flutter_tawk_to: ^0.0.1
+     flutter_tawk_to_plus: ^0.0.1
    ```
 
 2. Run the following command to install the package:
@@ -34,17 +34,17 @@ A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat func
 
 3. Import the package in your Dart code:
    ```dart
-   import 'package:flutter_tawk_to/flutter_tawk_to.dart';
+   import 'package:flutter_tawk_to_plus/flutter_tawk_to_plus.dart';
    ```
 
 ## Usage
 
 ### Initializing the Tawk.to Service
 
-To use the `flutter_tawk_to` package, initialize the `TawkService` with a direct chat link and optional visitor attributes. The service can be initialized in the `main.dart` file or another appropriate entry point.
+To use the `flutter_tawk_to_plus` package, initialize the `TawkService` with a direct chat link and optional visitor attributes. The service can be initialized in the `main.dart` file or another appropriate entry point.
 
 ```dart
-import 'package:flutter_tawk_to/flutter_tawk_to.dart';
+import 'package:flutter_tawk_to_plus/flutter_tawk_to_plus.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -183,7 +183,7 @@ TawkVisitor(
 
 ## Screenshots
 
-Below are example screenshots of the `flutter_tawk_to` package in action:
+Below are example screenshots of the `flutter_tawk_to_plus` package in action:
 
 | Home Screen                          | Chat Screen                          |
 |--------------------------------------|--------------------------------------|
@@ -225,8 +225,8 @@ class MyApp extends StatelessWidget {
 ## Additional Information
 
 - **Documentation**: For detailed API documentation, refer to the Dart documentation generated from the source code.
-- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/flutter_tawk_to).
-- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk_to/issues).
+- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/flutter_tawk_to_plus).
+- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk_to_plus/issues).
 - **Support**: For questions or support related to Tawk.to, check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
 ## License
