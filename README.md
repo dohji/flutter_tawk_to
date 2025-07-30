@@ -185,9 +185,9 @@ TawkVisitor(
 
 Below are example screenshots of the `flutter_tawk` package in action:
 
-| Home Screen | Chat Screen | Notification |
-|-------------|-------------|--------------|
-| ![Home Screen](screenshots/home_screen.png) | ![Chat Screen](screenshots/chat_screen.png) | ![Notification](screenshots/notification.png) |
+| Home Screen | Chat Screen                          | Notification                         |
+|-------------|--------------------------------------|--------------------------------------|
+| ![Home Screen](screenshots/home.png) | ![Chat Screen](screenshots/help.png) | ![Notification](screenshots/gif.gif) |
 
 
 ## Example
