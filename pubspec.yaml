@@ -1,0 +1,35 @@
+name: flutter_tawk
+description: A Flutter package for integrating Tawk.to live chat functionality, enabling seamless customer support with customizable visitor attributes, notifications, and WebView-based chat interface.
+version: 0.0.1
+homepage: https://github.com/dohji/flutter_tawk
+repository: https://github.com/dohji/flutter_tawk
+issue_tracker: https://github.com/dohji/flutter_tawk/issues
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  crypto: ^3.0.6 # For generating secure hashes for Tawk.to authentication
+  event_bus: ^2.0.1 # For event-driven communication within the app
+  flutter_inappwebview: ^6.1.5 # For rendering Tawk.to chat in a WebView
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0 # For enforcing code quality and linting rules
+
+flutter:
+# Assets can be added here if needed (e.g., images, JSON files)
+# assets:
+#   - assets/images/icon.png
+#
+# Custom fonts can be declared here if required by the package
+# fonts:
+#   - family: CustomFont
+#     fonts:
+#       - asset: fonts/CustomFont-Regular.ttf
+#       - asset: fonts/CustomFont-Bold.ttf
+#         weight: 700
