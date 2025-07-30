@@ -185,8 +185,8 @@ TawkVisitor(
 
 Below are example screenshots of the `tawk_to` package in action:
 
-| Home Screen | Chat Screen                          | Notification                         |
-|-------------|--------------------------------------|--------------------------------------|
+| Home Screen                          | Chat Screen                          | Notification                         |
+|--------------------------------------|--------------------------------------|--------------------------------------|
 | ![Home Screen](screenshots/home.png) | ![Chat Screen](screenshots/help.png) | ![Notification](screenshots/gif.gif) |
 
 
@@ -222,7 +222,7 @@ class MyApp extends StatelessWidget {
 ## Additional Information
 
 - **Documentation**: For detailed API documentation, refer to the Dart documentation generated from the source code.
-- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/flutter_tawk_package).
-- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk_package/issues).
+- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/tawk_to).
+- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/tawk_to/issues).
 - **Support**: For questions or support, contact the maintainers via the GitHub repository or check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
