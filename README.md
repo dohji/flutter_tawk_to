@@ -193,26 +193,6 @@ Below are example screenshots of the `tawk_to` package in action:
 |---------------------------------------|
 | ![Notification](screenshots/gif.gif)  |
 
-
-<table>
-  <tr>
-    <td><strong>Home Screen</strong></td>
-    <td><strong>Chat Screen</strong></td>
-    <td><strong>Notification</strong></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/home.png" width="250"></td>
-    <td><img src="screenshots/help.png" width="250"></td>
-    <td><img src="screenshots/gif.gif" width="300"></td>
-  </tr>
-</table>
-
-<p align="center">
-  <img src="screenshots/home.png" width="30%">
-  <img src="screenshots/help.png" width="30%">
-  <img src="screenshots/gif.gif" width="35%">
-</p>
-
 ## Example
 
 For a complete example, check the `/example` folder in the package repository. It includes a full implementation with a home screen, chat screen, and notification handling.
