@@ -1,7 +1,7 @@
 /// The main entry point for the Flutter application, demonstrating the integration
 /// of the Tawk.to chat service with local notifications and state management using GetX.
 import 'package:flutter/material.dart';
-import 'package:tawk_to/tawk_to.dart';
+import 'package:flutter_tawk_to/flutter_tawk_to.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
