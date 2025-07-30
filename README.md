@@ -229,3 +229,6 @@ class MyApp extends StatelessWidget {
 - **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/tawk_to/issues).
 - **Support**: For questions or support related to Tawk.to, check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

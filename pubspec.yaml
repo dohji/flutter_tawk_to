@@ -4,6 +4,7 @@ version: 0.0.1
 homepage: https://github.com/dohji/tawk_to
 repository: https://github.com/dohji/tawk_to
 issue_tracker: https://github.com/dohji/tawk_to/issues
+license: MIT
 
 environment:
   sdk: ^3.6.0
