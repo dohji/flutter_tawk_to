@@ -189,6 +189,29 @@ Below are example screenshots of the `tawk_to` package in action:
 |--------------------------------------|--------------------------------------|--------------------------------------|
 | ![Home Screen](screenshots/home.png) | ![Chat Screen](screenshots/help.png) | ![Notification](screenshots/gif.gif) |
 
+<table>
+  <tr>
+    <td><strong>Home Screen</strong></td>
+    <td><strong>Chat Screen</strong></td>
+    <td><strong>Notification</strong></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/home.png" width="250"></td>
+    <td><img src="screenshots/help.png" width="250"></td>
+    <td><img src="screenshots/gif.gif" width="300"></td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="screenshots/home.png" width="30%">
+  <img src="screenshots/help.png" width="30%">
+  <img src="screenshots/gif.gif" width="35%">
+</p>
+<p align="center">
+  <strong>Home Screen</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Chat Screen</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Notification Demo</strong>
+</p>
 
 ## Example
 
@@ -224,5 +247,5 @@ class MyApp extends StatelessWidget {
 - **Documentation**: For detailed API documentation, refer to the Dart documentation generated from the source code.
 - **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/tawk_to).
 - **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/tawk_to/issues).
-- **Support**: For questions or support, contact the maintainers via the GitHub repository or check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
+- **Support**: For questions or support related to Tawk.to, check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
