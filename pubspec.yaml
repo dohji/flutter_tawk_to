@@ -1,9 +1,9 @@
-name: flutter_tawk
+name: tawk_to
 description: A Flutter package for integrating Tawk.to live chat functionality, enabling seamless customer support with customizable visitor attributes, notifications, and WebView-based chat interface.
 version: 0.0.1
-homepage: https://github.com/dohji/flutter_tawk
-repository: https://github.com/dohji/flutter_tawk
-issue_tracker: https://github.com/dohji/flutter_tawk/issues
+homepage: https://github.com/dohji/flutter_tawk_package
+repository: https://github.com/dohji/flutter_tawk_package
+issue_tracker: https://github.com/dohji/flutter_tawk_package/issues
 
 environment:
   sdk: ^3.6.0

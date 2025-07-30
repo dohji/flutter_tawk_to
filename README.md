@@ -1,4 +1,4 @@
-# flutter_tawk
+# tawk_to
 
 A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat functionality into your Flutter applications. This package provides a seamless way to embed a Tawk.to chat widget, manage visitor attributes, handle agent messages, and display notifications using a WebView-based interface.
 
@@ -24,7 +24,7 @@ A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat func
 1. Add the package to your `pubspec.yaml`:
    ```yaml
    dependencies:
-     flutter_tawk: ^0.0.1
+     tawk_to: ^0.0.1
    ```
 
 2. Run the following command to install the package:
@@ -34,17 +34,17 @@ A Flutter package for integrating [Tawk.to](https://www.tawk.to/) live chat func
 
 3. Import the package in your Dart code:
    ```dart
-   import 'package:flutter_tawk/flutter_tawk.dart';
+   import 'package:tawk_to/tawk_to.dart';
    ```
 
 ## Usage
 
 ### Initializing the Tawk.to Service
 
-To use the `flutter_tawk` package, initialize the `TawkService` with a direct chat link and optional visitor attributes. The service can be initialized in the `main.dart` file or another appropriate entry point.
+To use the `tawk_to` package, initialize the `TawkService` with a direct chat link and optional visitor attributes. The service can be initialized in the `main.dart` file or another appropriate entry point.
 
 ```dart
-import 'package:flutter_tawk/flutter_tawk.dart';
+import 'package:tawk_to/tawk_to.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -183,7 +183,7 @@ TawkVisitor(
 
 ## Screenshots
 
-Below are example screenshots of the `flutter_tawk` package in action:
+Below are example screenshots of the `tawk_to` package in action:
 
 | Home Screen | Chat Screen                          | Notification                         |
 |-------------|--------------------------------------|--------------------------------------|
@@ -222,7 +222,7 @@ class MyApp extends StatelessWidget {
 ## Additional Information
 
 - **Documentation**: For detailed API documentation, refer to the Dart documentation generated from the source code.
-- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/flutter_tawk).
-- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk/issues).
+- **Contributing**: Contributions are welcome! Please submit pull requests or open issues on the [GitHub repository](https://github.com/dohji/flutter_tawk_package).
+- **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk_package/issues).
 - **Support**: For questions or support, contact the maintainers via the GitHub repository or check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
