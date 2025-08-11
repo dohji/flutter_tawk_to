@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "97724913651",
+    "project_id": "mefita-7d362",
+    "storage_bucket": "mefita-7d362.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97724913651:android:d8f9f00804757d7586a486",
+        "android_client_info": {
+          "package_name": "com.mefita.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXLOPrdU4VMfVTLSIG3pwhdILV56Yk8ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
