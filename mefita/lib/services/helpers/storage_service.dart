@@ -83,7 +83,7 @@ class StorageService {
     await prefs.setBool(SharedPrefKey.userIsLoggedIn, true);
   }
 
-  Future<bool> userLoginStatus() async {
+  Future<bool> userIsLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(SharedPrefKey.userIsLoggedIn) ?? false;
   }

@@ -1,13 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mefita/services/global_controller.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      globalController.splashScreenTimeout();
+      // globalController.splashScreenTimeout();
     });
   }
 
@@ -62,19 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             ],
-          ),
-
-          Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Text(
-                '© ${DateTime.now().year} Juwel Energy',
-                style: textTheme.labelSmall
-              ),
-            ),
-          ),
+          )
         ],
       ),
     );

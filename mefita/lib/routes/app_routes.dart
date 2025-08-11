@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:mefita/bindings/intro_binding.dart';
 import 'package:mefita/bindings/splash_binding.dart';
+import 'package:mefita/ui/global/start/intro_screen.dart';
 import 'package:mefita/ui/global/start/splash.dart';
 import 'route_middleware.dart';
 
@@ -23,12 +25,12 @@ class AppRoutes {
       binding: SplashBinding(),
       // middlewares: [Get.find<RouteMiddleware>()],
     ),
-    // GetPage(
-    //   name: intro,
-    //   page: () => const IntroScreen(),
-    //   binding: IntroBinding(),
-    //   middlewares: [Get.find<RouteMiddleware>()],
-    // ),
+    GetPage(
+      name: intro,
+      page: () => const IntroScreen(),
+      binding: IntroBinding(),
+      middlewares: [Get.find<RouteMiddleware>()],
+    ),
     // GetPage(
     //   name: login,
     //   page: () => const LoginScreen(),

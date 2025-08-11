@@ -5,7 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:mefita/routes/app_routes.dart';
 import 'package:mefita/services/api/auth_apis.dart';
+import 'package:mefita/services/helpers/storage_service.dart';
 import 'package:mefita/ui/global/auth/signin/signin.dart';
 import 'package:mefita/ui/global/helpers/globals.dart';
 import 'package:mefita/utils/constants.dart';
@@ -43,13 +45,12 @@ class GlobalController extends GetxController{
 
     await getStoredTokens();
     Timer(const Duration(seconds: 3), () async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
       await getLocalData();
 
-      var seenIntroScreen = prefs.getBool(SharedPrefKey.seenIntroScreen) ?? true; // Change this when intro screen is implemented
+      var seenIntroScreen = await StorageService.instance.hasSeenIntroScreen();
+      userIsLoggedIn.value = await StorageService.instance.userIsLoggedIn();
 
-      if(seenIntroScreen != null && seenIntroScreen == true){
-        userIsLoggedIn.value = prefs.getBool(SharedPrefKey.userIsLoggedIn) ?? false;
+      if(seenIntroScreen == true){
         if(userIsLoggedIn.value){
 
           TokenService tokenService = TokenService();
@@ -70,7 +71,7 @@ class GlobalController extends GetxController{
       }else{
         debugPrint("User has not seen intro screen, redirecting to onboarding screen");
         // TODO: Implement onboarding screen
-        // Get.offAll(() => const OnBoarding());
+        Get.offNamed(AppRoutes.intro);
       }
     });
   }
