@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
+import 'package:mefita/bindings/auth_binding.dart';
 import 'package:mefita/bindings/intro_binding.dart';
 import 'package:mefita/bindings/splash_binding.dart';
+import 'package:mefita/ui/global/auth/signin/signin.dart';
+import 'package:mefita/ui/global/auth/signup/signup_step_one.dart';
+import 'package:mefita/ui/global/auth/signup/signup_step_two.dart';
 import 'package:mefita/ui/global/start/intro_screen.dart';
 import 'package:mefita/ui/global/start/splash.dart';
 import 'route_middleware.dart';
@@ -10,7 +14,8 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String intro = '/intro';
   static const String login = '/login';
-  static const String signup = '/signup';
+  static const String signupStepOne = '/signup-step-one';
+  static const String signupStepTwo = '/signup-step-two';
   static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
   static const String main = '/main';
@@ -31,18 +36,18 @@ class AppRoutes {
       binding: IntroBinding(),
       middlewares: [Get.find<RouteMiddleware>()],
     ),
-    // GetPage(
-    //   name: login,
-    //   page: () => const LoginScreen(),
-    //   binding: AuthBinding(),
-    //   middlewares: [Get.find<RouteMiddleware>()],
-    // ),
-    // GetPage(
-    //   name: forgotPassword,
-    //   page: () => const ForgotPasswordScreen(),
-    //   binding: AuthBinding(),
-    //   middlewares: [Get.find<RouteMiddleware>()],
-    // ),
+    GetPage(
+      name: login,
+      page: () => const SignInScreen(),
+      binding: AuthBinding(),
+      middlewares: [Get.find<RouteMiddleware>()],
+    ),
+    GetPage(
+      name: signupStepOne,
+      page: () => const SignUpStepOne(),
+      binding: AuthBinding(),
+      middlewares: [Get.find<RouteMiddleware>()],
+    ),
     // GetPage(
     //   name: home,
     //   page: () => const HomeScreen(),

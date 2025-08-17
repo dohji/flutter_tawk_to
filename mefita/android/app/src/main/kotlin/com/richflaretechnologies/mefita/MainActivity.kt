@@ -1,4 +1,4 @@
-package com.richflaretechnologies.mefita
+package com.mefita.app
 
 import io.flutter.embedding.android.FlutterActivity
 

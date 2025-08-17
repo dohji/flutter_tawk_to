@@ -1,13 +1,17 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mefita/routes/app_routes.dart';
 import 'package:mefita/services/global_controller.dart';
 import 'package:mefita/ui/global/components/buttons.dart';
 import 'package:mefita/ui/global/helpers/style.dart';
 import 'package:mefita/ui/global/helpers/text_input_decoration.dart';
 import 'package:get/get.dart';
 
+import '../signup/signup_step_one.dart';
 import 'signin_controller.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -57,13 +61,6 @@ class _SignInScreenState extends State<SignInScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    // AnnotatedRegion<SystemUiOverlayStyle>(
-    //   value: SystemUiOverlayStyle(
-    //     statusBarColor: Colors.transparent,
-    //     statusBarIconBrightness: Get.isDarkMode ? Brightness.light : Brightness.dark,
-    //     statusBarBrightness: Get.isDarkMode? Brightness.dark : Brightness.light,
-    //   ),
-
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: GestureDetector(
@@ -92,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     )
                   ),
                   const SizedBox(height: 5),
-                  Text("Enter your email and password to login to your account", style: textTheme.labelMedium),
+                  Text("Enter your phone number to sign in to your account", style: textTheme.labelMedium),
                 ],
               )
               : Text(
@@ -112,119 +109,106 @@ class _SignInScreenState extends State<SignInScreen> {
 
                       const SizedBox(height: 27),
 
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Text('Email',
-                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
-                        ),
-                      ),
-                      const SizedBox(height: 5,),
-                      TextFormField(
-                        controller: signInController.emailTC,
-                        style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
-                          enabledBorder: inputBorder(colorScheme),
-                          focusedBorder: inputBorderFocused(colorScheme),
-                          errorBorder: inputBorder(colorScheme),
-                          focusedErrorBorder: inputBorderFocused(colorScheme),
-                          filled: true,
-                          fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
-                          hintText: 'jane@email.com',
-                          hintStyle: textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: colorScheme.onSurface.withValues(alpha: 0.5)
-                          ),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        validator: (String? value) => !GetUtils.isEmail(value!)
-                            ? "Valid email required"
-                            : null,
-                      ),
-
-                      const SizedBox(height: 27),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Text('Password',
-                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
-                        ),
-                      ),
-                      const SizedBox(height: 5,),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      //   child: Text('Phone Number',
+                      //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 5,),
                       Obx(() =>
-                        TextFormField(
-                          controller: signInController.passwordTC,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
-                          obscureText: obscurePassword.value,
-                          style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onBackground),
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
-                              enabledBorder: inputBorder(colorScheme),
-                              focusedBorder: inputBorderFocused(colorScheme),
-                              errorBorder: inputBorder(colorScheme),
-                              focusedErrorBorder: inputBorderFocused(colorScheme),
-                              filled: true,
-                              fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
-                              suffixIcon: Padding(
-                                padding: const EdgeInsets.only(right: 20.0),
-                                child: IconButton(
-                                    onPressed: (){
-                                      obscurePassword.value = !obscurePassword.value;
+                         TextFormField(
+                          controller: signInController.phoneTC,
+                          style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // open country picker
+                                  showCountryPicker(
+                                    context: context,
+                                    showPhoneCode: true,
+                                    onSelect: (Country country) {
+                                      signInController.selectedCountry.value = country;
                                     },
-                                    icon: obscurePassword.value ?
-                                    const Icon(Icons.visibility, color: Colors.grey) :
-                                    const Icon(Icons.visibility_off, color: Colors.grey)
+                                    countryListTheme: CountryListThemeData(
+                                      backgroundColor: colorScheme.surface,
+                                      textStyle: textTheme.bodyMedium!.copyWith(color: colorScheme.onSurface),
+                                      // bottomSheetHeight: 500, // Optional. Country list modal height
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(AppBorderRadius.sm),
+                                        topRight: Radius.circular(AppBorderRadius.sm),
+                                      ),
+                                      searchTextStyle: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+                                      inputDecoration: InputDecoration(
+                                        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 30),
+                                        enabledBorder: inputBorder(colorScheme),
+                                        focusedBorder: inputBorderFocused(colorScheme),
+                                        errorBorder: inputBorder(colorScheme),
+                                        focusedErrorBorder: inputBorderFocused(colorScheme),
+                                        filled: true,
+                                        fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
+                                        hintText: 'search',
+                                        hintStyle: textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w500,
+                                            color: colorScheme.onSurface.withValues(alpha: 0.5)
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: colorScheme.onSurface.withValues(alpha: 0.03),
+                                    borderRadius: BorderRadius.circular(AppBorderRadius.xl),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(signInController.selectedCountry.value?.flagEmoji ?? "", style: textTheme.titleLarge),
+                                      const SizedBox(width: 4),
+                                      Text("+${signInController.selectedCountry.value?.phoneCode ?? ""}",
+                                        style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      SvgPicture.asset("assets/svg/caret-down.svg", color: colorScheme.onSurface, height: 15, width: 15),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          validator: (String? value) => value!.trim().isEmpty
-                          ? "Required"
-                          : null,
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: TextButton(
-                          onPressed: () {
-                            // Get.to(() => const ResetPasswordScreen());
-                          },
-                          child: RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      text: "Forgotten your password? ",
-                                      style: textTheme.labelSmall
-                                  ),
-
-                                  TextSpan(
-                                    text: 'Reset Password',
-                                    style:textTheme.labelSmall?.copyWith(
-                                      color: colorScheme.error,
-                                      fontWeight: FontWeight.w600
-                                    ),
-                                  )
-                                ],
-                              )
+                            prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+                            enabledBorder: inputBorder(colorScheme),
+                            focusedBorder: inputBorderFocused(colorScheme),
+                            errorBorder: inputBorder(colorScheme),
+                            focusedErrorBorder: inputBorderFocused(colorScheme),
+                            filled: true,
+                            fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
+                            hintText: 'phone number',
+                            hintStyle: textTheme.bodyMedium!.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: colorScheme.onSurface.withValues(alpha: 0.5)
+                            ),
                           ),
+                          keyboardType: TextInputType.phone,
+                          textInputAction: TextInputAction.done,
+                          validator: (String? value) => !GetUtils.isPhoneNumber(value!)
+                              ? "Valid phone required"
+                              : null,
                         ),
                       ),
-
-                      const SizedBox(height: 27*2),
+                      const SizedBox(height: 27),
 
                       Center(
                         child: PrimaryButton(
-                          label: "Login",
-                          // foregroundColor: colorScheme.surface,
-                          // backgroundColor: colorScheme.onBackground,
-                          // width: double.maxFinite,
+                          label: "Sign In",
                           isFullWidth: true,
                           onTap: () {
                             if (signInFormKey.currentState!.validate()){
-                              signInController.handleSignIn();
+                              // signInController.handleSignIn();
                             }
                           },
                         ),
@@ -232,10 +216,85 @@ class _SignInScreenState extends State<SignInScreen> {
 
                       const SizedBox(height: 27/2),
 
+                      // Divider with OR text in the middle
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Row(
+                          children: [
+                            Expanded(child: Divider(color: colorScheme.onSurface.withValues(alpha: 0.1),)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text("OR", style: textTheme.labelMedium),
+                            ),
+                            Expanded(child: Divider(color: colorScheme.onSurface.withValues(alpha: 0.1),)),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 27/2),
+
+                      Center(
+                        child: PrimaryButton(
+                          label: "",
+                          text: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "assets/svg/google.svg",
+                                height: 20,
+                                width: 20,
+                              ),
+                              const SizedBox(width: 20),
+                              Text("Sign In with Google", style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                          // foregroundColor: colorScheme.surface,
+                          backgroundColor: Colors.transparent,
+                          borderColor: colorScheme.onSurface.withValues(alpha: 0.1),
+                          // width: double.maxFinite,
+                          isFullWidth: true,
+                          onTap: () {
+
+                          },
+                        ),
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      Center(
+                        child: PrimaryButton(
+                          label: "",
+                          text: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "assets/svg/apple.svg",
+                                height: 20,
+                                width: 20,
+                              ),
+                              const SizedBox(width: 20),
+                              Text("Sign In with Apple", style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
+                            ],
+                          ),
+                          // foregroundColor: colorScheme.surface,
+                          backgroundColor: Colors.transparent,
+                          borderColor: colorScheme.onSurface.withValues(alpha: 0.1),
+                          // width: double.maxFinite,
+                          isFullWidth: true,
+                          onTap: () {
+
+                          },
+                        ),
+                      ),
+
+                      const SizedBox(height: 27),
+
                       Center(
                         child: TextButton(
                           onPressed: () {
-                            // Get.to(() => const SignUpScreen());
+                            // Get.toNamed(AppRoutes.signupStepOne);
+                            Get.to(() => SignUpStepOne());
                           },
                           child: RichText(
                               textAlign: TextAlign.center,
@@ -246,7 +305,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                       style: textTheme.labelSmall
                                   ),
                                   TextSpan(
-                                    text: 'Create an account now to have fuel delivered to your doorstep',
+                                    text: 'Create an account now to enjoy seamless auto service',
                                     style:textTheme.labelSmall?.copyWith(
                                         color: colorScheme.error,
                                         fontWeight: FontWeight.w600

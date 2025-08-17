@@ -10,6 +10,8 @@ import 'package:mefita/routes/route_middleware.dart';
 import 'package:mefita/services/global_controller.dart';
 import 'package:mefita/services/helpers/firebase_notification_helper.dart';
 import 'package:mefita/services/helpers/notification_service.dart';
+import 'package:mefita/services/helpers/theme_service.dart';
+import 'package:mefita/services/helpers/translation_service.dart';
 
 import 'bindings/initial_binding.dart';
 import 'firebase_options.dart';
@@ -49,6 +51,14 @@ Future<void> main() async{
     FirebaseNotificationHelper.initializeForegroundNotifications();
 
     await globalController.getAppSetup();
+
+    // Initialize services
+    await Get.putAsync(() => ThemeService().init());
+    await Get.putAsync(() => TranslationService().init());
+
+    // Initialize route middleware
+    final routeMiddleware = Get.put(RouteMiddleware());
+    // await routeMiddleware.checkAuthStatus();
 
     runApp(const MyApp());
 

@@ -17,24 +17,36 @@ class _IntroScreenState extends State<IntroScreen> {
   final _storage = const FlutterSecureStorage();
 
   final List<OnboardingPage> _pages = [
+    // 1
     OnboardingPage(
-      title: 'Connect with Your\nIdeal Matches',
-      highlightedText: 'Ideal Matches',
-      description: 'Find and connect with people who share your interests, values, and lifestyle in your area.',
-      imagePath: 'assets/images/onboarding/dating2.png',
-      // imagePath: 'assets/images/onboarding/match_illustration.jpg',
+      title: 'Get Reliable ',
+      highlightedText: 'Roadside Assistance',
+      description: 'Quickly get help when your vehicle breaks down anytime and anywhere.',
+      imagePath: 'assets/images/onboarding1.webp',
     ),
+
+// 2
     OnboardingPage(
-      title: 'Meeting New People in\nYour Area',
-      highlightedText: 'Your Area',
-      description: 'Discover potential matches nearby and start meaningful conversations with people around you.',
-      imagePath: 'assets/images/onboarding/dating_map.png',
+      title: 'Find Nearby ',
+      highlightedText: 'Auto Service Providers',
+      description: 'Easily discover local mechanics and garages using the interactive map.',
+      imagePath: 'assets/images/onboarding2.webp',
     ),
+
+// 3
     OnboardingPage(
-      title: 'Engage and Connect:\nChat and Call',
-      highlightedText: 'Chat and Call',
-      description: 'Stay connected through instant messaging and voice calls with your matches.',
-      imagePath: 'assets/images/onboarding/dating3.png',
+      title: 'Request Towing Services ',
+      highlightedText: 'In Seconds',
+      description: 'Get matched with the closest tow truck and track its live arrival.',
+      imagePath: 'assets/images/onboarding3.webp',
+    ),
+
+// 4
+    OnboardingPage(
+      title: 'Trusted And Verified ',
+      highlightedText: 'Automotive Experts',
+      description: 'Connect with top-rated professionals reviewed by real drivers on the platform.',
+      imagePath: 'assets/images/onboarding4.webp',
     ),
   ];
 
@@ -72,80 +84,79 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.transparent,
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Skip button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: _completeIntro,
-                    child: Text(
-                      'Skip',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
+      body: Column(
+        children: [
+          // Skip button
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.end,
+          //     children: [
+          //       TextButton(
+          //         onPressed: _completeIntro,
+          //         child: Text(
+          //           'Skip',
+          //           style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          //             color: Theme.of(context).colorScheme.primary,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // Page view
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              onPageChanged: (index) => _currentPage.value = index,
+              itemCount: _pages.length,
+              itemBuilder: (context, index) => _buildPage(_pages[index]),
+            ),
+          ),
+          // Navigation and indicators
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Back button
+                Obx(() => _currentPage.value > 0
+                  ? _buildNavButton(
+                      icon: Icons.arrow_back,
+                      onPressed: _previousPage,
+                      isOutlined: true,
+                    )
+                  : const SizedBox(width: 56)),
+                // Page indicators
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    _pages.length,
+                    (index) => Obx(() => Container(
+                      width: 8,
+                      height: 8,
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _currentPage.value == index
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.primary.withOpacity(0.3),
                       ),
-                    ),
+                    )),
                   ),
-                ],
-              ),
+                ),
+                // Next/Done button
+                _buildNavButton(
+                  icon: Icons.arrow_forward,
+                  onPressed: _nextPage,
+                  isOutlined: false,
+                ),
+              ],
             ),
-            // Page view
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                onPageChanged: (index) => _currentPage.value = index,
-                itemCount: _pages.length,
-                itemBuilder: (context, index) => _buildPage(_pages[index]),
-              ),
-            ),
-            // Navigation and indicators
-            Padding(
-              padding: const EdgeInsets.all(24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Back button
-                  Obx(() => _currentPage.value > 0
-                    ? _buildNavButton(
-                        icon: Icons.arrow_back,
-                        onPressed: _previousPage,
-                        isOutlined: true,
-                      )
-                    : const SizedBox(width: 56)),
-                  // Page indicators
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      _pages.length,
-                      (index) => Obx(() => Container(
-                        width: 8,
-                        height: 8,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _currentPage.value == index
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                        ),
-                      )),
-                    ),
-                  ),
-                  // Next/Done button
-                  _buildNavButton(
-                    icon: Icons.arrow_forward,
-                    onPressed: _nextPage,
-                    isOutlined: false,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -170,7 +181,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
               ),
               child: FractionallySizedBox(
-                heightFactor: 1.4,
+                // heightFactor: 1.4,
                 alignment: Alignment.topCenter,
                 child: Image.asset(
                   page.imagePath,
@@ -237,7 +248,7 @@ class _IntroScreenState extends State<IntroScreen> {
         color: isOutlined ? Colors.transparent : Theme.of(context).colorScheme.primary,
         border: isOutlined ? Border.all(
           color: Theme.of(context).colorScheme.primary,
-          width: 2,
+          width: 1,
         ) : null,
       ),
       child: IconButton(

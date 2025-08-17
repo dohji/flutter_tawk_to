@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      // globalController.splashScreenTimeout();
+      globalController.splashScreenTimeout();
     });
   }
 
@@ -47,16 +47,16 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Center(
                 child: Image.asset(
-                  'assets/images/logo.png',
-                  height: 120,
+                  'assets/images/logo_wide_transparent.png',
+                  width: MediaQuery.of(context).size.width * 0.6,
                 ),
               ),
-              const SizedBox(height: 5),
-              Center(
-                child: Image.asset(
-                  'assets/images/loading.gif',
-                  height: 30,
-                  color: colorScheme.primary,
+              const SizedBox(height: 10),
+              Text(
+                'Tow. Fix. Drive.',
+                style: textTheme.titleSmall?.copyWith(
+                  color: colorScheme.onSurface,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],

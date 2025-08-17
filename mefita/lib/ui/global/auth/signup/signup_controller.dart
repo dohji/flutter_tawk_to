@@ -5,7 +5,7 @@ import 'package:mefita/services/global_controller.dart';
 import 'package:mefita/ui/global/helpers/globals.dart';
 import 'package:get/get.dart';
 
-class SignInController extends GetxController{
+class SignUpController extends GetxController{
 
   AuthApiInterface authApiInterface = AuthApiInterface();
   GlobalController globalController = Get.find();

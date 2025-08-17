@@ -8,4 +8,4 @@ class InitialBinding extends Bindings {
     Get.put(GlobalController());
     // Get.lazyPut(() => OnboardingFlowController(), fenix: true);
   }
-} 
+}
