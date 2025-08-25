@@ -1,33 +1,29 @@
-import 'dart:convert';
-import 'dart:math';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mefita/routes/app_routes.dart';
 import 'package:mefita/services/global_controller.dart';
+import 'package:mefita/ui/global/auth/signup/signup_controller.dart';
 import 'package:mefita/ui/global/components/buttons.dart';
 import 'package:mefita/ui/global/helpers/style.dart';
 import 'package:mefita/ui/global/helpers/text_input_decoration.dart';
 import 'package:get/get.dart';
+import 'package:mefita/utils/constants.dart';
 
-import '../signup/signup_step_one.dart';
-import 'signin_controller.dart';
+class SignUpStepTwoVehicleOwnerScreen extends StatefulWidget {
 
-class SignInScreen extends StatefulWidget {
-
-  const SignInScreen({Key? key})
+  const SignUpStepTwoVehicleOwnerScreen({Key? key})
       : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpStepTwoVehicleOwnerScreen> createState() => _SignUpStepTwoVehicleOwnerScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpStepTwoVehicleOwnerScreenState extends State<SignUpStepTwoVehicleOwnerScreen> {
 
   GlobalController globalController = Get.find();
-  SignInController signInController = Get.put(SignInController());
-  final signInFormKey = GlobalKey<FormState>();
+  SignUpController signUpController = Get.put(SignUpController());
+  final signUpStep2VehicleOwnerFormKey = GlobalKey<FormState>();
 
   late ScrollController _scrollController;
   // static const kExpandedHeight = 280.0;
@@ -77,23 +73,24 @@ class _SignInScreenState extends State<SignInScreen> {
               foregroundColor: colorScheme.onSurface,
               backgroundColor: colorScheme.surface,
               surfaceTintColor: Colors.transparent,
+              excludeHeaderSemantics: false,
               title: sliverAppBarExpanded
                   ? Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Welcome Back 👋🏽',
+                    'Create Account',
                     style: textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                     )
                   ),
                   const SizedBox(height: 5),
-                  Text("Enter your phone number to sign in to your account", style: textTheme.labelMedium),
+                  Text("Tell us your name and phone number", style: textTheme.labelMedium),
                 ],
               )
               : Text(
-                  'Welcome Back',
+                  'Create Account',
                   style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)
               ),
             ),
@@ -102,23 +99,64 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal, vertical: 0),
                 child: Form(
-                  key: signInFormKey,
+                  key: signUpStep2VehicleOwnerFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      const SizedBox(height: 27),
-
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      //   child: Text('Phone Number',
-                      //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                      // Container(
+                      //   height: 5,
+                      //   width: 20,
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(10),
+                      //     color: colorScheme.primary,
                       //   ),
                       // ),
-                      // const SizedBox(height: 5,),
+
+                      const SizedBox(height: 27),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Text('Full Name',
+                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
+                      TextFormField(
+                        controller: signUpController.nameTC,
+                        style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
+                          enabledBorder: inputBorder(colorScheme),
+                          focusedBorder: inputBorderFocused(colorScheme),
+                          errorBorder: inputBorder(colorScheme),
+                          focusedErrorBorder: inputBorderFocused(colorScheme),
+                          filled: true,
+                          fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
+                          hintText: 'name as on your ID',
+                          hintStyle: textTheme.bodyMedium!.copyWith(
+                            // fontWeight: FontWeight.w500,
+                              color: colorScheme.onSurface.withValues(alpha: 0.5)
+                          ),
+                        ),
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        validator: (String? value) => !GetUtils.isNull(value!)
+                            ? "Name is required"
+                            : null,
+                      ),
+                      const SizedBox(height: 27),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Text('Phone Number',
+                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
                       Obx(() =>
                          TextFormField(
-                          controller: signInController.phoneTC,
+                          controller: signUpController.phoneTC,
                           style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
@@ -131,7 +169,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     context: context,
                                     showPhoneCode: true,
                                     onSelect: (Country country) {
-                                      signInController.selectedCountry.value = country;
+                                      signUpController.selectedCountry.value = country;
                                     },
                                     countryListTheme: CountryListThemeData(
                                       backgroundColor: colorScheme.surface,
@@ -168,9 +206,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Text(signInController.selectedCountry.value?.flagEmoji ?? "", style: textTheme.titleLarge),
+                                      Text(signUpController.selectedCountry.value?.flagEmoji ?? "", style: textTheme.titleLarge),
                                       const SizedBox(width: 4),
-                                      Text("+${signInController.selectedCountry.value?.phoneCode ?? ""}",
+                                      Text("+${signUpController.selectedCountry.value?.phoneCode ?? ""}",
                                         style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
                                       ),
                                       const SizedBox(width: 4),
@@ -189,12 +227,12 @@ class _SignInScreenState extends State<SignInScreen> {
                             fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
                             hintText: 'phone number',
                             hintStyle: textTheme.bodyMedium!.copyWith(
-                              fontWeight: FontWeight.w500,
+                              // fontWeight: FontWeight.w500,
                               color: colorScheme.onSurface.withValues(alpha: 0.5)
                             ),
                           ),
                           keyboardType: TextInputType.phone,
-                          textInputAction: TextInputAction.done,
+                          textInputAction: TextInputAction.next,
                           validator: (String? value) => !GetUtils.isPhoneNumber(value!)
                               ? "Valid phone required"
                               : null,
@@ -202,118 +240,58 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       const SizedBox(height: 27),
 
-                      Center(
-                        child: PrimaryButton(
-                          label: "Sign In",
-                          isFullWidth: true,
-                          onTap: () {
-                            if (signInFormKey.currentState!.validate()){
-                              // signInController.handleSignIn();
-                            }
-                          },
-                        ),
-                      ),
-
-                      const SizedBox(height: 27/2),
-
-                      // Divider with OR text in the middle
-
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Row(
-                          children: [
-                            Expanded(child: Divider(color: colorScheme.onSurface.withValues(alpha: 0.1),)),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("OR", style: textTheme.labelMedium),
-                            ),
-                            Expanded(child: Divider(color: colorScheme.onSurface.withValues(alpha: 0.1),)),
-                          ],
+                        child: Text('Email Address',
+                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
                         ),
                       ),
-
-                      const SizedBox(height: 27/2),
+                      const SizedBox(height: 5,),
+                      TextFormField(
+                        controller: signUpController.emailTC,
+                        style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500, color: colorScheme.onSurface),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(vertical: 22, horizontal: 30),
+                          enabledBorder: inputBorder(colorScheme),
+                          focusedBorder: inputBorderFocused(colorScheme),
+                          errorBorder: inputBorder(colorScheme),
+                          focusedErrorBorder: inputBorderFocused(colorScheme),
+                          filled: true,
+                          fillColor: colorScheme.onSurface.withValues(alpha: 0.03),
+                          hintText: 'optional',
+                          hintStyle: textTheme.bodyMedium!.copyWith(
+                            // fontWeight: FontWeight.w500,
+                              color: colorScheme.onSurface.withValues(alpha: 0.5)
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.done,
+                        validator: (String? value) {
+                          if (value!.trim().isEmpty) {
+                            return null;
+                          }else if (!GetUtils.isEmail(value)) {
+                            return "Email is invalid";
+                          }
+                          return null;
+                        }
+                      ),
+                      const SizedBox(height: 27*2),
 
                       Center(
                         child: PrimaryButton(
-                          label: "",
-                          text: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                "assets/svg/google.svg",
-                                height: 20,
-                                width: 20,
-                              ),
-                              const SizedBox(width: 20),
-                              Text("Sign In with Google", style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
-                            ],
-                          ),
-                          // foregroundColor: colorScheme.surface,
-                          backgroundColor: Colors.transparent,
-                          borderColor: colorScheme.onSurface.withValues(alpha: 0.1),
-                          // width: double.maxFinite,
+                          label: "Continue",
                           isFullWidth: true,
                           onTap: () {
-
+                            if (signUpStep2VehicleOwnerFormKey.currentState!.validate()){
+                              signUpController.handleSignUp({
+                                "name": signUpController.nameTC.text.trim(),
+                                "phone": signUpController.phoneTC.text.trim(),
+                                "email": signUpController.emailTC.text.trim(),
+                                "country": signUpController.selectedCountry.value?.name ?? "",
+                                "type": UserType.vehicleOwner,
+                              });
+                            }
                           },
-                        ),
-                      ),
-
-                      const SizedBox(height: 10),
-
-                      Center(
-                        child: PrimaryButton(
-                          label: "",
-                          text: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                "assets/svg/apple.svg",
-                                height: 20,
-                                width: 20,
-                              ),
-                              const SizedBox(width: 20),
-                              Text("Sign In with Apple", style: textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w500)),
-                            ],
-                          ),
-                          // foregroundColor: colorScheme.surface,
-                          backgroundColor: Colors.transparent,
-                          borderColor: colorScheme.onSurface.withValues(alpha: 0.1),
-                          // width: double.maxFinite,
-                          isFullWidth: true,
-                          onTap: () {
-
-                          },
-                        ),
-                      ),
-
-                      const SizedBox(height: 27),
-
-                      Center(
-                        child: TextButton(
-                          onPressed: () {
-                            // Get.toNamed(AppRoutes.signupStepOne);
-                            Get.to(() => SignUpStepOne());
-                          },
-                          child: RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                      text: "Don't have an account yet? ",
-                                      style: textTheme.labelSmall
-                                  ),
-                                  TextSpan(
-                                    text: 'Create an account now to enjoy seamless auto service',
-                                    style:textTheme.labelSmall?.copyWith(
-                                        color: colorScheme.error,
-                                        fontWeight: FontWeight.w600
-                                    ),
-                                  )
-                                ],
-                              )
-                          ),
                         ),
                       ),
 

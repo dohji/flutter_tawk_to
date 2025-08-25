@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:ip_country_lookup/ip_country_lookup.dart';
+import 'package:ip_country_lookup/models/ip_country_data_model.dart';
 import 'package:mefita/routes/app_routes.dart';
 import 'package:mefita/services/api/auth_apis.dart';
 import 'package:mefita/services/helpers/storage_service.dart';
@@ -23,6 +25,9 @@ class GlobalController extends GetxController{
   Rx<Map<String, dynamic>> userProfile = Rx<Map<String, dynamic>>({});
   Rx<Map<String, dynamic>> appSetup = Rx<Map<String, dynamic>>({});
   Rx<bool> userIsLoggedIn = Rx(false);
+
+  // User location data (derived from IP)
+  late IpCountryData countryData;
 
   // Institution driver
   RxList myAssets = RxList([]);
@@ -44,6 +49,8 @@ class GlobalController extends GetxController{
   splashScreenTimeout() async{
 
     await getStoredTokens();
+    countryData = await IpCountryLookup().getIpLocationData();
+    print(countryData.toJson());
     Timer(const Duration(seconds: 3), () async {
       await getLocalData();
 

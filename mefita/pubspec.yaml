@@ -65,6 +65,7 @@ dependencies:
   socket_io_client: ^3.1.2
   flutter_secure_storage: ^9.2.4
   country_picker: ^2.0.27
+  ip_country_lookup: ^1.0.3
 
 dev_dependencies:
   flutter_test:

@@ -18,6 +18,7 @@ class SignInController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+    selectedCountry.value = CountryService().findByCode(globalController.countryData.country_code);
     Future.delayed(Duration(milliseconds: 400), () {
       // Globals.showLoadingDialog();
     });

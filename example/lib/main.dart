@@ -163,11 +163,11 @@ class TawkNotificationService {
 
     // Initializes the Tawk.to chat service with visitor details and callbacks.
     TawkService().initialize(
-      directChatLink: 'https://tawk.to/chat/your_chat_link', // Replace with your Tawk.to direct chat link
+      directChatLink: 'https://tawk.to/chat/664106a907f59932ab3eb7ca/1j1dpbus0', // Replace with your Tawk.to direct chat link
       visitor: TawkVisitor(
         name: "John Doe",
         email: "john@mail.com",
-        secret: "your_secret_here", // Replace with actual secret key
+        secret: "35b25402c0baba33492e26c9623768ec1b55301c", // Replace with actual secret key
         otherAttributes: {
           "user-id": "some_unique_user_id",
           "phone-number": "some_phone_number",

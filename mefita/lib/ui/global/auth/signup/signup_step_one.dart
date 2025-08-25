@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mefita/services/global_controller.dart';
+import 'package:mefita/ui/global/auth/signup/signup_step2_vehicle_owner.dart';
 import 'package:mefita/ui/global/components/buttons.dart';
 import 'package:mefita/ui/global/helpers/style.dart';
 import 'package:get/get.dart';
@@ -171,7 +172,7 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      'Create Account',
+                      'Account Type',
                       style: textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: colorScheme.onBackground,
@@ -182,7 +183,7 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
                 ],
               )
                   : Text(
-                  'Create Account',
+                  'Account Type',
                   style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600, color: colorScheme.onBackground)
               ),
             ),
@@ -205,7 +206,7 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
                           value: UserType.vehicleOwner,
                           selected: selectedUserType.value == UserType.vehicleOwner,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 20),
                         _roleTile(
                           title: "Service Provider",
                           subTitle: "Offer auto repair services",
@@ -213,7 +214,7 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
                           value: UserType.serviceProvider,
                           selected: selectedUserType.value == UserType.serviceProvider,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 20),
                         _roleTile(
                           title: "Towing Operator",
                           subTitle: "Receive and handle tow requests",
@@ -231,7 +232,13 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
                         label: "Continue",
                         isFullWidth: true,
                         onTap: () {
+                          if (selectedUserType.value == UserType.vehicleOwner) {
+                            Get.to(() => SignUpStepTwoVehicleOwnerScreen());
+                          } else if (selectedUserType.value == UserType.serviceProvider) {
 
+                          } else if (selectedUserType.value == UserType.towingOperator) {
+
+                          }
                         },
                       ),
                     ),
@@ -260,7 +267,8 @@ class _SignUpStepOneState extends State<SignUpStepOne> {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
         decoration: BoxDecoration(
           color: selected ? colorScheme.primary.withOpacity(.08) : colorScheme.surface,
-          borderRadius: BorderRadius.circular(AppBorderRadius.md),
+          borderRadius: BorderRadius.circular(50),
+          // borderRadius: BorderRadius.circular(AppBorderRadius.md),
           border: Border.all(
             color: selected ? colorScheme.primary : colorScheme.outlineVariant,
           ),

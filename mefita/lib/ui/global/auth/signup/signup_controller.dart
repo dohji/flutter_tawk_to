@@ -11,6 +11,7 @@ class SignUpController extends GetxController{
   GlobalController globalController = Get.find();
 
   Rxn<Country> selectedCountry = Rxn<Country>();
+  TextEditingController nameTC = TextEditingController();
   TextEditingController phoneTC = TextEditingController();
   TextEditingController emailTC = TextEditingController();
   TextEditingController passwordTC = TextEditingController();
@@ -18,17 +19,13 @@ class SignUpController extends GetxController{
   @override
   void onInit() {
     super.onInit();
+    selectedCountry.value = CountryService().findByCode(globalController.countryData.country_code);
     Future.delayed(Duration(milliseconds: 400), () {
       // Globals.showLoadingDialog();
     });
   }
 
-  Future handleSignIn() async {
-    var data = {
-      "email": emailTC.text.trim(),
-      "password": passwordTC.text.trim()
-    };
-
+  Future handleSignUp(data) async {
     Globals.showLoadingDialog();
     var loginResponse = await authApiInterface.logUserIn(data);
     // Get.back();
