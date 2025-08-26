@@ -229,6 +229,17 @@ class MyApp extends StatelessWidget {
 - **Issues**: Report bugs or feature requests on the [issue tracker](https://github.com/dohji/flutter_tawk_to_plus/issues).
 - **Support**: For questions or support related to Tawk.to, check the Tawk.to [documentation](https://www.tawk.to/knowledgebase/).
 
+## ☕ Support
+
+If you find this package helpful and would like to support its development, you can buy me a coffee.  
+Your support helps me keep improving and maintaining this project. ❤️
+
+<p align="center">
+  <a href="https://buymeacoffee.com/richdodzi" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="60" />
+  </a>
+</p>
+
 ## License
 
 This package is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

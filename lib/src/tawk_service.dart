@@ -376,6 +376,8 @@ class TawkService {
                 javaScriptEnabled: true,
                 javaScriptCanOpenWindowsAutomatically: true,
                 clearCache: false,
+                transparentBackground: true,
+                useHybridComposition: false,
               ),
               onWebViewCreated: (controller) async {
                 if (_webViewController == null) {
@@ -415,7 +417,7 @@ class TawkService {
                 return NavigationActionPolicy.CANCEL;
               },
               onLoadStop: (controller, url) async {
-                Future.delayed(Duration(seconds: 2), () {
+                Future.delayed(Duration(seconds: 1), () {
                   setState(() {
                     showPlaceholder = false;
                   });

@@ -1,6 +1,6 @@
 name: flutter_tawk_to_plus
 description: A Flutter package for integrating Tawk.to live chat functionality, enabling seamless customer support with customizable visitor attributes, notifications, and WebView-based chat interface.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/dohji/flutter_tawk_to_plus
 repository: https://github.com/dohji/flutter_tawk_to_plus
 issue_tracker: https://github.com/dohji/flutter_tawk_to_plus/issues
